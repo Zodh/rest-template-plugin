@@ -1,4 +1,4 @@
-package br.com.felipec.RestTemplatePlugin;
+package br.com.felipec.resttemplateplugin;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

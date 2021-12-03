@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Rest Template Plugin
+  description: A simple API to compare rest template and rabbitMQ messages between the main service and a plugin service.
+
+servers:
+  - url: http://localhost:8081/
+
+paths:
+  /rest-template/call:
+    get:
+      tags:
+        - Compare Services
+      description: "Service that responses a number of requests made by the main service."
+      parameters:
+        - $ref: '#/components/parameters/numberOfMessages'
+      responses:
+        200:
+          $ref: '#/components/responses/RestTemplate200OK'
+
+components:
+  schemas:
+    SuccessResponse:
+      type: object
+      description: Success Response Value
+      properties:
+        message:
+          type: string
+          description: Success Response Value
+          example: "success!"
+
+  #  ----- Parameters  ------
+  parameters:
+    numberOfMessages:
+      name: messagesQuantity
+      in: header
+      description: Quantity of messages sent from the main service to the plugins.
+      schema:
+        type: integer
+      required: true
+      
+  # ----- Responses -----
+
+  responses:
+    RestTemplate200OK:
+      description: Valid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SuccessResponse'
+  #  ---- /Added lines  ----------------------------------------
